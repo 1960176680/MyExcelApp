@@ -1,6 +1,9 @@
 package com.zhouwenguang.hz.myexcelapp;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
 
 import java.io.File;
@@ -10,7 +13,7 @@ import java.io.File;
  */
 
 public class MyUtils {
-
+     public static String FILE_PATH;
     /**
      * 获得存储文件
      *
@@ -32,4 +35,25 @@ public class MyUtils {
 //        return new File(cachePath + File.separator + name);
         return Environment.getExternalStorageDirectory();
     }
+
+
+    public static void openAssignFolder(Context context,String path){
+        File file = new File(path);
+        if(null==file || !file.exists()){
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setDataAndType(Uri.fromFile(file), "application/vnd.ms-excel");
+        try {
+            context.startActivity(intent);
+            context.startActivity(Intent.createChooser(intent,"选择浏览工具"));
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

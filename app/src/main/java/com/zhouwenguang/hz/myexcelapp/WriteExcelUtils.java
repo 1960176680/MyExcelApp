@@ -85,7 +85,9 @@ public class WriteExcelUtils {
             }
         }
 
-        writeFile(workbook,getFile(context));
+        MyUtils.FILE_PATH=getFile(context);
+
+        writeFile(workbook,MyUtils.FILE_PATH);
     }
     /**
      * 合并cell单元格
