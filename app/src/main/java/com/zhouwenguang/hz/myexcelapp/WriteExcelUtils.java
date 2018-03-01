@@ -44,7 +44,8 @@ public class WriteExcelUtils {
 //        SparseArray<CellStyle> cellStyles=creatCellStyles(workbook);
         //创建execl中的一个表
         Sheet sheet= workbook.createSheet();
-        // setSheet(sheet);
+//        去除表格线
+//         setSheet(sheet);
 
         //创建第一行
         Row headerRow=sheet.createRow(0);
