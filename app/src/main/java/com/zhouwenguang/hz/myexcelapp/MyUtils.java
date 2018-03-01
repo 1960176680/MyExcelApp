@@ -28,12 +28,12 @@ public class MyUtils {
                 || !Environment.isExternalStorageRemovable()) {
 
 //            cachePath = context.getExternalCacheDir().getPath();
-//            cachePath = Environment.getExternalStorageDirectory();
+            cachePath = Environment.getExternalStorageDirectory().getPath();
         } else {
             cachePath = context.getCacheDir().getPath();
         }
-//        return new File(cachePath + File.separator + name);
-        return Environment.getExternalStorageDirectory();
+        return new File(cachePath + File.separator + name);
+//        return cachePath;
     }
 
 
